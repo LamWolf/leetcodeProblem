@@ -1,37 +1,27 @@
 function threeSum(nums: number[]): number[][] {
-    nums.sort();
+    nums.sort((a, b) => a - b);
+    console.log(nums);
     const n: number = nums.length;
-    let l = 0;
-    let mid = 1;
-    let r = n - 1;
     const res: number[][] = [];
-    while(nums[l] <= 0 && nums[r] >= 0 && mid < r) {
-        const lNum = nums[l];
-        const midNum = nums[mid];
-        const rNum = nums[r];
-        console.log('============');
-        console.log(lNum, midNum, rNum);
-        if (lNum + midNum + rNum === 0) {
-            res.push([lNum, midNum, rNum]);
-            l += 1;
-            mid = l + 1;
-            if (mid === r) {
-                break;
-            }
-        } else if (lNum + midNum + rNum < 0) {
-            if (midNum < 0) {
+    for (let l = 0; l < n - 1; l ++) {
+        if (l > 0 && nums[l] === nums[l - 1]) continue;
+        let mid = l + 1;
+        let r = n - 1;
+        while(mid < r) {
+            while(mid > l + 1 && mid < n && nums[mid] === nums[mid - 1]) mid += 1;
+            if (mid >= r) break;
+            const sum = nums[l] + nums[mid] + nums[r];
+            if (sum === 0) {
+                res.push([nums[l], nums[mid], nums[r]]);
                 mid += 1;
-                continue;
+            } else if (sum < 0) {
+                mid += 1;
             } else {
-                l += 1;
-                mid = l + 1;
+                r -= 1;
             }
-        } else {
-            r -= 1;
-            mid = l + 1;
         }
     }
     return res;
 };
 
-console.log(threeSum([0,0]));
+console.log(threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4]));
