@@ -1,4 +1,4 @@
-var a = 0;
+let a = 0;
 function b () {
     var a = 2;
     console.log(a);
@@ -23,7 +23,7 @@ function e() {
 }
 console.log(a);
 b();
-// c();
+c();
 d(c);
 e();
 console.log(a);
