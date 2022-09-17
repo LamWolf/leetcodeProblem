@@ -1,6 +1,6 @@
 let a = 0;
 function b () {
-    var a = 2;
+    let a = 2;
     console.log(a);
     // setTimeout(() => {
     //     console.log(a);

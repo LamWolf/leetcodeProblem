@@ -2,15 +2,16 @@ window.a = 1;
 
 obja = {
     a: 'a',
-    fn: () => {
+    fn: function() {
         console.log(this.a);
     }
 }
 
 objb = {
     a: 'b',
-    fn: () => {
-        return () => {
+    fn: function() {
+        console.log(this.a);
+        return function() {
             console.log(this.a);
         }
     }
@@ -18,5 +19,7 @@ objb = {
 
 const fna = obja.fn;
 const fnb = objb.fn();
+obja.fn();
+objb.fn()();
 fna();
 fnb();
